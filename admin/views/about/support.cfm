@@ -22,10 +22,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 <cfoutput>
 <div id="meld-body">
 	<h3>Meld Gallery Support</h3>
-	<p>Meld Solutions offers a range of support options, including <a href="http://www.meldsolutions.com/support/forums/" target="_new">community forums</a>
-	and our <a href="http://docs.meldsolutions.com" target="_new">documentation wiki</a>.</p>
-	
-	<p>We also offer a wide range of <a href="http://www.meldsolutions.com/services/" target="_new">professional services</a>, including training, consulting,
-	dedicated support and custom development.</p>
+	<p>Issues can be posted on <a href="https://github.com/meldsolutions/Meld-Gallery/issues">GitHub</a>.
+	This is also the location for <a href="https://github.com/meldsolutions/Meld-Gallery/wiki">documentation</a>, and where you can download the 
+	latest version of the plugin.</p>
 </div>
 </cfoutput>

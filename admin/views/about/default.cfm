@@ -23,7 +23,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 <div id="meld-body">
 	<h3>About Meld Gallery</h3>
 	<p>Meld Gallery is a Mura CMS plugin, developed by Meld Solutions Inc.</p>
-	<p>Details, demonstrations and documentation on Meld Gallery can be found at <a href="http://www.meldsolutions.com/products/meld-gallery/">http://www.meldsolutions.com/</a>.</p>
 	<p><strong>Version: </strong> #rc.pluginConfig.getVersion()#</p> 
 </div>
 </cfoutput>

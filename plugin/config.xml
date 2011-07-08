@@ -1,7 +1,7 @@
 <plugin>
 <name>Meld Gallery</name>
 <package>MeldGallery</package>
-<version>0.8</version>
+<version>1.0.0.1</version>
 <provider>Meld Solutions Inc.</provider>
 <providerURL>http://www.meldsolutions.com</providerURL>
 <category>Application</category>

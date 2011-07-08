@@ -22,6 +22,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 <cfoutput>
 <div id="meld-body">
 	<h3>Meld Gallery Documentation</h3>
-	<p>Documentation for the plugin can be found at <a href="http://www.meldsolutions.com/products/meld-gallery/">http://www.meldsolutions.com/</a>.</p>
+	<p>Documentation for the plugin can be found at the Meld Solutions <a href="https://github.com/meldsolutions/Meld-Gallery/wiki">GitHub</a>.</p>
 </div>
 </cfoutput>
