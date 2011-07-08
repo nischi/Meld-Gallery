@@ -1,0 +1,24 @@
+/*
+ * 
+ */
+.meld-gallery-cycle-nav .nav {
+	padding: 3px 0;
+}
+.meld-gallery-cycle-nav .nav a {
+	color: #333;
+	border: 1px solid #eee;
+	background-color: #ddd;
+	padding: 2px 5px 1px;
+	margin: 0 3px 0 0;
+	text-decoration: none;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+}
+.meld-gallery-cycle-nav .nav a.activeSlide {
+	background: #666;
+	color: #eee;
+}
+.meld-gallery-cycle .nav a:focus {
+	outline: none;
+}

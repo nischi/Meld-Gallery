@@ -1,0 +1,316 @@
+#ctPlugin {
+}
+#ctPlugin #meldLogo {
+	float: right;
+}
+#ctPlugin .screenshots	 {
+	margin: 0;
+	text-align: center;
+}
+#ctPlugin .screenshots .screenshot {
+	float: left;
+	display: block;
+	border: 1px solid #ddd;
+	background-color: #eee;
+	padding: 5px;
+	margin: 10px;
+}
+#ctPlugin .screenshots .screenshot caption {
+	clear: left;
+	border: 1px solid green;
+}
+
+#ctPlugin ul.errorList {
+	list-style-type: none;
+}
+#ctPlugin ul.errorList li {
+	list-style: none;
+}
+#ctPlugin ul.errorList .errordetail {
+	padding: 5px;
+}
+#ctPlugin h3.pluginTitle {
+}
+#ctPlugin #contentLeft {
+	display: block;
+	float: left;
+}
+#ctPlugin #menu {
+	background: #fafafa;
+	float: right;
+	width: 140px;
+	border-left: 1px dotted #eee;
+}
+#ctPlugin #formButtons {
+}
+#ctPlugin div.inline {
+	display: inline;
+}
+#ctPlugin .inlineform {
+	margin: 10px 0 0 0;
+	overflow: hidden;
+	width: 100%;
+	height: 1px;
+}
+#ctPlugin .postmessage {
+	border: 1px solid #ccc;
+	background: #eee;
+	padding: 10px;
+	margin: 5px 0px 20px 0px;
+}
+#ctPlugin .fullmessage {
+	display: none;
+}
+/* table START */
+#ctPlugin table {
+}
+
+#ctPlugin table.stripe {
+	border: 0px;
+}
+#ctPlugin table td.clean {
+	border: none;
+}
+#ctPlugin table td.base {
+	border: none;
+	border-top: 1px solid #eee;
+	background-color: #fff;
+}
+#ctPlugin th a.tooltip {
+	display: inline;
+	color: #000 !important;
+	padding-right: 10px;
+	font-weight: bold;
+}
+#ctPlugin td a.tooltip {
+	display: inline;
+	color: #000 !important;
+	padding-right: 8px;
+	font-weight: normal;
+	font-size: 90%;
+}
+#ctPlugin td a.tooltip:hover span {
+	display: block;
+	position: absolute;
+	top: 20px;
+	left: 20px;
+	padding: 6px;
+	border: 1px solid #bbb;
+	background: #fefff0;
+	color: #000;
+	width: 150px;
+	white-space: normal;
+	text-align: left;
+	text-decoration: none;
+}
+#ctPlugin table tr.alt td {
+	background: #fff;
+}
+#ctPlugin table td {
+	border: 0px;
+	border-right: 1px solid #eee;
+	background-color: #f6f8f0;
+	padding: 6px;
+}
+#ctPlugin th {
+	height: 30px;
+	padding: 3px 8px;
+	border: 0px;
+	background: #fff url(images/bg_table_head.gif) 0 0 repeat-x;
+}
+#ctPlugin td.administration {
+}
+#ctPlugin th.pod {
+	border: 0px;
+}
+#ctPlugin th.low {
+	font-weight: normal;
+	font-size: 80%;
+}
+#ctPlugin th.ll,#ctPlugin td.ll {
+	border: 0px;
+	background-image: url(images/bg_table_head_ll.gif);
+	background-position: left 0;
+	background-repeat: no-repeat;
+}
+#ctPlugin th.rr,#ctPlugin td.rr {
+	border: 0px;
+	background: transparent url(images/bg_table_head_rr.gif) right 0 no-repeat;
+}
+#ctPlugin th.ll,#ctPlugin td.administration {
+	border: 0px;
+}
+#ctPlugin span.active {
+	display: block;
+	width: 30px;
+	height: 14px;
+	background: url(images/active_24.png) center center no-repeat;
+}
+#ctPlugin td span.inactive {
+	width: 14px;
+	height: 14px;
+}
+
+table td.administration li.newDoc {
+	background: url(images/page_new_24.png) no-repeat;
+}
+table td.administration li.newEvent {
+	background: url(images/event_new_24.png) no-repeat;
+}
+table td.administration li.cal {
+	background: url(images/icons/cal_24.png) no-repeat;
+}
+/* table END */
+
+/* paging nav START */
+.pagingBlock {
+	padding: 3px 0 0 0;
+}
+.pagingBlock .left {
+	float: left;
+	text-align: left;
+	width: 340px;
+}
+.pagingBlock .center {
+	float: left;
+	width: 120px;
+	text-align: center;
+}
+.pagingBlock .right {
+	float: right;
+	width: 340px;
+	text-align: right;
+}
+.pagingBlock div {
+	padding: 0px;
+	display: inline;
+	color: #666;
+}
+.pagingBlox .search {
+	float: right;
+	text-align: right;
+}
+.pagingBlock .navForm {
+	display: inline;
+	padding: 0 0 0 3px;
+}
+.pagingNav {
+	display: inline;
+	list-style-type: none;
+}
+.pagingNav li {
+	display: inline;
+	padding: 3px 2px;
+}
+.pagingNav li.current {
+	color: #000;
+}
+.pagingBlock a {
+	text-decoration: underline;
+	color: #ff3a00;
+}
+.navForm input {
+	padding: 1px 5px 3px 2px;
+	text-align: right;
+	color: #666;
+}
+.navForm a.submit {
+	padding: 4px 0 6px 8px;
+	color: #000;
+}
+.navForm a.submit span {
+	padding: 4px 8px 6px 0;
+}
+/* paging nav END */
+
+/* navPlugin START */
+#navPlugin {
+	list-style-type: none;
+	margin: 0;
+	padding: 5px;  
+	border-left: 1px dotted #ccc;
+}
+#navPlugin .divide {
+	clear: both;
+	margin: 5px 0 2px 0;
+	padding: 2px 0;
+	background: url(/admin/images/rule_dotted.gif) repeat-x;
+}
+#navPlugin li {
+	background: transparent url(/admin/images/arrow_big_orange.gif) no-repeat 1px 50%;
+	margin: 0 10px 0 0;
+	padding: 0 0 0 10px;
+}
+#navPlugin li.heading {
+	background: none;
+	margin: 0;
+	padding: 0 0 0 2px;
+}
+#navPlugin li.heading h4 {
+	font-weight: bold;
+	font-size: 100%;
+}
+#navPlugin .image {
+	background: transparent url(images/wizard.gif) no-repeat 0% 50%;
+	margin: 0 10px 0 0;
+	padding: 0 0 0 15px;
+}
+#navPlugin .wizard {
+	background: transparent url(images/wizard.gif) no-repeat 0% 50%;
+	margin: 0 10px 0 0;
+	padding: 0 0 0 15px;
+}
+#navPlugin .help {
+	background: transparent url(images/help.gif) no-repeat 0% 50%;
+	margin: 0 10px 0 0;
+	padding: 0 0 0 15px;
+}
+/* navPlugin END */
+a.submit {
+	background: url(images/btn_submit.gif) no-repeat top left;
+}
+a.submit span {
+	background: url(images/btn_submit.gif) no-repeat top right;
+}
+a.delete {
+	background: url(images/btn_del.gif) no-repeat top left;
+	margin: 0;
+	padding: 4px 0 5px 8px;
+}
+a.delete:hover {
+	text-decoration: none;
+}
+a.delete span {
+	background: url(images/btn_del.gif) no-repeat top right;
+	padding: 4px 8px 5px 0;
+	color: #000;
+}
+a.action {
+	background: url(images/btn_inform.gif) no-repeat top left;
+	margin: 0;
+	padding: 4px 0 5px 8px;
+}
+a.action:hover {
+	text-decoration: none;
+}
+a.action span {
+	background: url(images/btn_inform.gif) no-repeat top right;
+	padding: 4px 8px 5px 0;
+	color: #fff;
+}
+span.gray {
+	color: #666;
+}
+#content dd.radio input,#content dd.radio label {
+	display: inline;
+}
+#content dt label,#content dd label {
+	display: inline;
+}
+#content dl {
+}
+#content dl.overview {
+}
+#content dl.overview dt,#content dl.overview dd {
+	display: inline;
+}

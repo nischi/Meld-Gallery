@@ -1,0 +1,81 @@
+/*
+ * 
+ */
+.meld-body {
+}
+.meld-gallery-cycle-feed .nav {
+	padding: 3px 0;
+	position: absolute;
+	bottom: 3px;
+	right: 12px;
+	z-index: 1000;
+}
+.meld-gallery-cycle-feed .nav a {
+	color: #333;
+	background-color: #ddd;
+	padding: 3px 6px 2px;
+	margin: 0 3px 0 0;
+	text-decoration: none;
+     -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -khtml-border-radius: 5px;
+    border-radius: 5px;
+}
+.meld-gallery-cycle-feed .nav a.activeSlide {
+	background: #666;
+	color: #fff;
+}
+.meld-gallery-cycle-feed .nav a:focus {
+	outline: none;
+}
+.meld-gallery-cycle-feed-cycle {
+	position: relative;
+}
+.meld-gallery-cycle-feed .gallerySlideShow {
+	background-color: #f3f7f8;
+	border: 1px solid #aaa;
+	display: block;
+	padding: 10px;
+	padding: 0;
+	margin: 10px;
+}
+.meld-gallery-cycle-feed .gallerySlideShow .img img {
+	display: block;
+}
+.meld-gallery-cycle-feed .gallerySlideShow .img {
+	display: block;
+	float: left;
+}
+.meld-gallery-cycle-feed .gallerySlideShow .desc {
+	float: right;
+	padding: 10px;
+}
+.meld-gallery-cycle-feed .gallerySlideShow .desc h3 {
+	word-break: normal;
+	white-space: normal;
+	line-break: normal;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

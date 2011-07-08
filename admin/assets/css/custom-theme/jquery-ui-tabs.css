@@ -1,0 +1,19 @@
+#msTabs .ui-corner-all {
+	border: 0px;
+	background-color: #fff;
+	background-image: none;
+	padding: 2px 0 0 10px;
+	margin: 0 0 -1px 0;
+}
+#msTabs .ui-tabs-nav li {
+	margin-bottom: 1px;
+}
+#msTabs .ui-tabs-selected {
+	border-color: #666;
+}
+#msTabs .ui-tabs-panel {
+	margin: 0;
+	padding: 20px;
+	border-top: 2px solid #333;
+	min-height: 200px;
+}

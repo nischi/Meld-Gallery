@@ -1,0 +1,231 @@
+<!---^^LICENSE-START^^--->
+	<!---
+||MELDGALLERYLICENSE||
+--->
+<!---^^LICENSE-END^^--->
+
+<cfcomponent displayname="DisplaytypeBean" output="false" extends="MeldGallery.com.meldsolutions.core.MeldBean">
+<!---^^GENERATEDSTART^^--->
+	<!---^^PROPERTIES-START^^--->
+	<cfproperty name="Displaytypeid" type="uuid" default="" required="true" maxlength="35" />
+	<cfproperty name="ObjectID" type="uuid" default="" maxlength="35" />
+	<cfproperty name="Package" type="string" default="" required="true" maxlength="45" />
+	<cfproperty name="Name" type="string" default="" required="true" maxlength="45" />
+	<cfproperty name="Description" type="string" default="" />
+	<cfproperty name="Settings" type="string" default="" />
+	<cfproperty name="IsConfigurable" type="boolean" default="0" required="true" />
+	<cfproperty name="IsActive" type="boolean" default="1" required="true" />
+	<cfproperty name="Version" type="string" default="" required="true" maxlength="12" />
+	<cfproperty name="Defaults" type="string" default="" />
+	<cfproperty name="ModuleID" type="uuid" default="" maxlength="35" />
+	<!---^^PROPERTIES-END^^--->
+
+	<cfset variables.instance = StructNew() />
+
+	<!--- INIT --->
+	<cffunction name="init" access="public" returntype="DisplaytypeBean" output="false">
+		<!---^^ATTRIBUTES-START^^--->
+		<cfargument name="Displaytypeid" type="uuid" required="false" default="#CreateUUID()#" />
+		<cfargument name="ObjectID" type="string" required="false" default="" />
+		<cfargument name="Package" type="string" required="false" default="" />
+		<cfargument name="Name" type="string" required="false" default="" />
+		<cfargument name="Description" type="string" required="false" default="" />
+		<cfargument name="Settings" type="string" required="false" default="" />
+		<cfargument name="IsConfigurable" type="boolean" required="false" default="0" />
+		<cfargument name="IsActive" type="boolean" required="false" default="1" />
+		<cfargument name="Version" type="string" required="false" default="" />
+		<cfargument name="Defaults" type="string" required="false" default="" />
+		<cfargument name="ModuleID" type="string" required="false" default="" />
+		<!---^^ATTRIBUTES-END^^--->
+		<cfargument name="BeanExists" type="boolean" required="false" default="false" />
+
+		<!---^^SETTERS-START^^--->
+		<cfset setDisplaytypeid( arguments.Displaytypeid ) />
+		<cfset setObjectID( arguments.ObjectID ) />
+		<cfset setPackage( arguments.Package ) />
+		<cfset setName( arguments.Name ) />
+		<cfset setDescription( arguments.Description ) />
+		<cfset setSettings( arguments.Settings ) />
+		<cfset setIsConfigurable( arguments.IsConfigurable ) />
+		<cfset setIsActive( arguments.IsActive ) />
+		<cfset setVersion( arguments.Version ) />
+		<cfset setDefaults( arguments.Defaults ) />
+		<cfset setModuleID( arguments.ModuleID ) />
+		<!---^^SETTERS-END^^--->
+		<cfset setBeanExists( arguments.BeanExists ) />
+		
+		<cfreturn this />
+	</cffunction>
+
+	<cffunction name="setMemento" access="public" returntype="DisplaytypeBean" output="false">
+		<cfargument name="memento" type="struct" required="yes"/>
+		<cfset variables.instance = arguments.memento />
+		<cfreturn this />
+	</cffunction>
+	<cffunction name="getMemento" access="public" returntype="struct" output="false" >
+		<cfreturn variables.instance />
+	</cffunction>
+	
+	<!---^^ACCESSORS-START^^--->
+	<cffunction name="setDisplaytypeid" access="public" returntype="void" output="false">
+		<cfargument name="Displaytypeid" type="uuid" required="true" />
+		<cfset variables.instance['displaytypeid'] = arguments.Displaytypeid />
+	</cffunction>
+	<cffunction name="getDisplaytypeid" access="public" returntype="uuid" output="false">
+		<cfreturn variables.instance.Displaytypeid />
+	</cffunction>
+	
+	<cffunction name="setObjectID" access="public" returntype="void" output="false">
+		<cfargument name="ObjectID" type="string" required="true" />
+		<cfset variables.instance['objectid'] = arguments.ObjectID />
+	</cffunction>
+	<cffunction name="getObjectID" access="public" returntype="string" output="false">
+		<cfreturn variables.instance.ObjectID />
+	</cffunction>
+	
+	<cffunction name="setPackage" access="public" returntype="void" output="false">
+		<cfargument name="Package" type="string" required="true" />
+		<cfset variables.instance['package'] = arguments.Package />
+	</cffunction>
+	<cffunction name="getPackage" access="public" returntype="string" output="false">
+		<cfreturn variables.instance.Package />
+	</cffunction>
+	
+	<cffunction name="setName" access="public" returntype="void" output="false">
+		<cfargument name="Name" type="string" required="true" />
+		<cfset variables.instance['name'] = arguments.Name />
+	</cffunction>
+	<cffunction name="getName" access="public" returntype="string" output="false">
+		<cfreturn variables.instance.Name />
+	</cffunction>
+	
+	<cffunction name="setDescription" access="public" returntype="void" output="false">
+		<cfargument name="Description" type="string" required="true" />
+		<cfset variables.instance['description'] = arguments.Description />
+	</cffunction>
+	<cffunction name="getDescription" access="public" returntype="string" output="false">
+		<cfreturn variables.instance.Description />
+	</cffunction>
+	
+	<cffunction name="setSettings" access="public" returntype="void" output="false">
+		<cfargument name="Settings" type="string" required="true" />
+		<cfset variables.instance['settings'] = arguments.Settings />
+	</cffunction>
+	<cffunction name="getSettings" access="public" returntype="string" output="false">
+		<cfreturn variables.instance.Settings />
+	</cffunction>
+	
+	<cffunction name="setIsConfigurable" access="public" returntype="void" output="false">
+		<cfargument name="IsConfigurable" type="boolean" required="true" />
+		<cfset variables.instance['isconfigurable'] = arguments.IsConfigurable />
+	</cffunction>
+	<cffunction name="getIsConfigurable" access="public" returntype="boolean" output="false">
+		<cfreturn variables.instance.IsConfigurable />
+	</cffunction>
+	
+	<cffunction name="setIsActive" access="public" returntype="void" output="false">
+		<cfargument name="IsActive" type="boolean" required="true" />
+		<cfset variables.instance['isactive'] = arguments.IsActive />
+	</cffunction>
+	<cffunction name="getIsActive" access="public" returntype="boolean" output="false">
+		<cfreturn variables.instance.IsActive />
+	</cffunction>
+	
+	<cffunction name="setVersion" access="public" returntype="void" output="false">
+		<cfargument name="Version" type="string" required="true" />
+		<cfset variables.instance['version'] = arguments.Version />
+	</cffunction>
+	<cffunction name="getVersion" access="public" returntype="string" output="false">
+		<cfreturn variables.instance.Version />
+	</cffunction>
+	
+	<cffunction name="setDefaults" access="public" returntype="void" output="false">
+		<cfargument name="Defaults" type="string" required="true" />
+		<cfset variables.instance['defaults'] = arguments.Defaults />
+	</cffunction>
+	<cffunction name="getDefaults" access="public" returntype="string" output="false">
+		<cfreturn variables.instance.Defaults />
+	</cffunction>
+	
+	<cffunction name="setModuleID" access="public" returntype="void" output="false">
+		<cfargument name="ModuleID" type="string" required="true" />
+		<cfset variables.instance['moduleid'] = arguments.ModuleID />
+	</cffunction>
+	<cffunction name="getModuleID" access="public" returntype="string" output="false">
+		<cfreturn variables.instance.ModuleID />
+	</cffunction>
+	<!---^^ACCESSORS-END^^--->
+
+	<!--- BeanExists --->
+	<cffunction name="setBeanExists" access="public" output="false" returntype="void">
+		<cfargument name="BeanExists" type="boolean" required="true" />
+		<cfset variables.BeanExists = arguments.BeanExists >
+	</cffunction>
+	<cffunction name="BeanExists" access="public" output="false" returntype="boolean">
+		<cfreturn variables.BeanExists>
+	</cffunction>
+
+	<!--- DUMP --->
+	<cffunction name="dump" access="public" output="true" return="void">
+		<cfargument name="abort" type="boolean" default="false" />
+		<cfdump var="#variables.instance#" />
+		<cfif arguments.abort>
+			<cfabort />
+		</cfif>
+	</cffunction>
+<!---^^GENERATEDEND^^--->
+<!---^^CUSTOMSTART^^--->
+	<cffunction name="getSettingsData" access="public" returntype="struct" output="false">
+		<cfargument name="$" type="struct" required="false" />
+
+		<cfif not len( getSettings() )>
+			<cfreturn StructNew() />
+		<cfelse>
+			<cfreturn deserializeJSON( getSettings() )>
+		</cfif>		
+	</cffunction>
+	<cffunction name="setSettingsData" access="public" returntype="void" output="false">
+		<cfargument name="SettingsData" type="struct" required="true" />
+		<cfif not structCount( arguments.SettingsData )>
+			<cfset setSettings( "{}" )>
+		<cfelse>
+			<cfset setSettings( serializeJSON( arguments.SettingsData ) )>
+		</cfif>		
+	</cffunction>
+
+	<cffunction name="getDefaultData" access="public" returntype="struct" output="false">
+		<cfargument name="$" type="struct" required="false" />
+
+		<cfif not len( getDefaults() )>
+			<cfreturn StructNew() />
+		<cfelse>
+			<cfreturn deserializeJSON( getDefaults() )>
+		</cfif>		
+	</cffunction>
+	<cffunction name="setDefaultData" access="public" returntype="void" output="false">
+		<cfargument name="DefaultData" type="struct" required="true" />
+		<cfif not structCount( arguments.DefaultData )>
+			<cfset setDefaults( "{}" )>
+		<cfelse>
+			<cfset setDefaults( serializeJSON( arguments.DefaultData ) )>
+		</cfif>		
+	</cffunction>
+
+	<cffunction name="getIdentity" access="public" output="false" returntype="string">
+		<cfset var meta = getMetadata( this ) />
+		
+		<cfreturn meta.displayName />
+	</cffunction>
+
+<!---^^CUSTOMEND^^--->
+</cfcomponent>	
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,96 @@
+#meld-msg-img {
+	display: none;
+}
+#meld-masthead-gallery {
+	width: 100% !important;
+	margin: 0 auto;
+	padding: 0;
+	background: #ededed;
+	position: relative;
+}
+#ms-msg-thumbs-list li {
+	border: 1px solid #fff;
+}
+#ms-msg-thumbs-list li img {
+	display: block;
+}
+#ms-msg-thumbs-list li.current {
+	border: 1px solid #ff8000;
+}
+#ms-msg-front {
+	position: absolute;
+	left: 0;
+	margin-left: 0px;
+	width: 100%;
+	height: 250px;
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+#ms-msg-back {
+	position: absolute;
+	left: 0;
+	margin-left: 0px;
+	width: 100%;
+	height: 250px;
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+#ms-msg-mask {
+	position: absolute;
+	left: 0;
+	margin-left: 0px;
+	width: 100%;
+	height: 250px;
+	background: url('../images/maskradial.png') center center repeat-y;
+}
+#ms-msg-infobox {
+	position: relative;
+	margin: 0 auto;
+	height: 250px;
+	width: 950px;
+	background: url('../images/infobox_white.png') 600px 0px no-repeat;
+}
+#ms-msg-body {
+	font-size: 1.1em;
+	position: absolute;
+	right: 24px;
+	top: 80px;
+	width: 300px;
+}
+#ms-msg-header {
+	position: absolute;
+	right: 20px;
+	top: 8px;
+	width: 250px;
+}
+#ms-msg-mast {
+	width: 50%;
+	position: relative;
+}
+#ms-msg-nav {
+	position: absolute;
+	left: 0px;
+	bottom: 0px;
+}
+#ms-msg-thumbs {
+	visibility: hidden;
+	font-size: 1.1em;
+	position: absolute;
+	right: -15px;
+	width: 320px;
+	top: 10px;
+}
+#ms-msg-thumbs-list {
+	padding: 0;
+	margin: 0;
+}
+#ms-msg-thumbs-list li {
+	list-style: none;
+	float: left;
+	margin: 0 2px 0 0;
+	padding: 0;
+}
+#ms-msg-content ul,#ms-msg-content ul li {
+	line-height: 1em;
+	margin: 0 0 3px 5px;
+}

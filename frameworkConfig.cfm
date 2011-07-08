@@ -1,0 +1,10 @@
+<cfset framework=structNew()>
+<cfset framework.applicationKey="MeldGallery">
+<cfset framework.base="/MeldGallery">
+<cfset framework.usingsubsystems=true>
+<cfset framework.defaultSubsystem="admin">
+<cfset framework.action="action">
+<cfset framework.home="main.default">
+<cfset framework.reload="reload">
+<cfset framework.generateSES=false>
+<cfset framework.reloadApplicationOnEveryRequest=false>

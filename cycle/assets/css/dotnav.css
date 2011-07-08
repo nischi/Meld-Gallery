@@ -1,0 +1,38 @@
+/*
+ * 
+ */
+.meld-gallery-cycle-dotnav .nav-container {
+	position: absolute;
+	padding: 3px 0;
+	bottom: 5px;
+	z-index: 1000;
+	width: 100%;
+	text-align: center;
+}
+.meld-gallery-cycle-dotnav .nav {
+	height: 10px;
+	padding: 2px 4px 0 7px;
+	background: url('../images/bg-black.png') repeat;
+	border-radius: 3px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+}
+.meld-gallery-cycle-dotnav .nav a {
+	font-size: 3pt;
+	margin: 0 4px 0 0;
+	padding: 4px;
+	background: url('../images/dot-gray.png') 0 0 no-repeat;
+}
+.meld-gallery-cycle-dotnav .gallerySlideShow .img img {
+	display: block;
+}
+.meld-gallery-cycle-dotnav .nav a.activeSlide {
+	padding: 4px;
+	background: url('../images/dot-white.png') 0 0 no-repeat;
+}
+.meld-gallery-cycle-dotnav .nav a:focus {
+	outline: none;
+}
+.meld-gallery-cycle {
+	position: relative;
+}

@@ -1,0 +1,8 @@
+.meld-shadowbox li img {
+	border: 2px solid #ddd;
+}
+.meld-shadowbox li .caption {
+	white-space: normal;
+	word-wrap: normal;
+	font-size: 90%;
+}

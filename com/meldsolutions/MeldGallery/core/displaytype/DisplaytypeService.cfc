@@ -1,0 +1,197 @@
+<!---^^LICENSE-START^^--->
+	<!---
+||MELDGALLERYLICENSE||
+--->
+<!---^^LICENSE-END^^--->
+
+<cfcomponent name="DisplaytypeService" output="false">
+<!---^^GENERATEDSTART^^--->
+	<cffunction name="init" access="public" output="false" returntype="DisplaytypeService">
+		<cfargument name="DisplaytypeDAO" type="any" required="true" />
+		<cfargument name="DisplaytypeGateway" type="any" required="true" />
+
+		<cfset variables.DisplaytypeDAO = arguments.DisplaytypeDAO />
+		<cfset variables.DisplaytypeGateway = arguments.DisplaytypeGateway />
+
+		<cfreturn this/>
+	</cffunction>
+
+	<cffunction name="createDisplaytype" access="public" output="false" returntype="any">
+		<!---^^ATTRIBUTES-START^^--->
+		<cfargument name="Displaytypeid" type="uuid" required="false" />
+		<cfargument name="ObjectID" type="string" required="false" />
+		<cfargument name="Package" type="string" required="false" />
+		<cfargument name="Name" type="string" required="false" />
+		<cfargument name="Description" type="string" required="false" />
+		<cfargument name="Settings" type="string" required="false" />
+		<cfargument name="IsConfigurable" type="boolean" required="false" />
+		<cfargument name="IsActive" type="boolean" required="false" />
+		<cfargument name="Version" type="string" required="false" />
+		<cfargument name="Defaults" type="string" required="false" />
+		<cfargument name="ModuleID" type="string" required="false" />
+		<!---^^ATTRIBUTES-END^^--->
+				
+		<cfset var DisplaytypeBean = createObject("component","DisplaytypeBean").init(argumentCollection=arguments) />
+
+		<cfreturn DisplaytypeBean />
+	</cffunction>
+
+	<cffunction name="getDisplaytype" access="public" output="false" returntype="any">
+		<!---^^PRIMARY-START^^--->
+		<cfargument name="Displaytypeid" type="uuid" required="true" />
+		<!---^^PRIMARY-END^^--->
+		<cfargument name="pluginConfig" type="any" required="false" />
+		
+		<cfset var DisplaytypeBean			= createDisplaytype(argumentCollection=arguments) />
+		<cfset var PackageDisplaytypeBean	= "" />
+
+		<cfset variables.DisplaytypeDAO.read(DisplaytypeBean) />
+		
+		<cfif DisplaytypeBean.beanExists()
+			and StructKeyExists(arguments,"pluginConfig")
+			and fileExists( "#expandPath( "/#arguments.pluginConfig.getPackage()#" )#/#DisplaytypeBean.getPackage()#/displayType/#DisplaytypeBean.getPackage()#Bean.cfc" )>
+			
+			<cfset PackageDisplaytypeBean = createObject("component","#arguments.pluginConfig.getPackage()#.#DisplaytypeBean.getPackage()#.displayType.#DisplaytypeBean.getPackage()#Bean").init(argumentCollection=DisplaytypeBean.getMemento() ) />
+			<cfreturn PackageDisplaytypeBean />
+		</cfif>
+
+		<cfreturn DisplaytypeBean />
+	</cffunction>
+
+	<cffunction name="getDisplaytypes" access="public" output="false" returntype="array">
+		<!---^^ATTRIBUTES-START^^--->
+		<cfargument name="Displaytypeid" type="uuid" required="false" />
+		<cfargument name="ObjectID" type="string" required="false" />
+		<cfargument name="Package" type="string" required="false" />
+		<cfargument name="Name" type="string" required="false" />
+		<cfargument name="Description" type="string" required="false" />
+		<cfargument name="Settings" type="string" required="false" />
+		<cfargument name="IsConfigurable" type="boolean" required="false" />
+		<cfargument name="IsActive" type="boolean" required="false" />
+		<cfargument name="Version" type="string" required="false" />
+		<cfargument name="Defaults" type="string" required="false" />
+		<cfargument name="ModuleID" type="string" required="false" />
+		<!---^^ATTRIBUTES-END^^--->
+		
+		<cfreturn variables.DisplaytypeGateway.getByAttributes(argumentCollection=arguments) />
+	</cffunction>
+
+	<cffunction name="getBeanByAttributes" access="public" output="false" returntype="any">
+		<!---^^ATTRIBUTES-START^^--->
+		<cfargument name="Displaytypeid" type="uuid" required="false" />
+		<cfargument name="ObjectID" type="string" required="false" />
+		<cfargument name="Package" type="string" required="false" />
+		<cfargument name="Name" type="string" required="false" />
+		<cfargument name="Description" type="string" required="false" />
+		<cfargument name="Settings" type="string" required="false" />
+		<cfargument name="IsConfigurable" type="boolean" required="false" />
+		<cfargument name="IsActive" type="boolean" required="false" />
+		<cfargument name="Version" type="string" required="false" />
+		<cfargument name="Defaults" type="string" required="false" />
+		<cfargument name="ModuleID" type="string" required="false" />
+		<!---^^ATTRIBUTES-END^^--->
+
+		<cfreturn variables.DisplaytypeGateway.getBeanByAttributes(argumentCollection=arguments) />
+	</cffunction>
+
+	<cffunction name="getByArray" access="public" output="false" returntype="Struct" >
+		<cfargument name="idArray" type="array" required="true" />
+
+		<cfreturn variables.DisplaytypeGateway.getByArray(argumentCollection=arguments) />
+	</cffunction>
+
+	<cffunction name="search" access="public" output="false" returntype="struct">
+		<cfargument name="criteria" type="struct" required="true" />
+		<cfargument name="fieldList" type="string" required="false" default="DisplayTypeID,name,isActive" />
+		<cfargument name="start" type="numeric" required="false" default="0"/>
+		<cfargument name="size" type="numeric" required="false" default="10"/>
+		<cfargument name="count" type="numeric" required="false" default="0"/>
+		<cfargument name="isPaged" type="numeric" required="false" default="true" />
+		<cfargument name="orderby" type="string" required="false" />
+		
+		<cfset var aDisplayType		= ArrayNew(1)>
+		<cfset var iiX				= "" >
+		<cfset var isValid			= false >
+		<cfset var sReturn			= StructNew()>
+		
+		<cfif arguments.isPaged and not arguments.count>
+			<cfset arguments.isCount = true>
+			<cfset sReturn.count = variables.DisplayTypeGateway.search(argumentCollection=arguments) />
+			<cfset arguments.isCount = false>
+		<cfelse>
+			<cfset sReturn.count = arguments.count />
+		</cfif>
+		
+		<cfset aDisplayType			= variables.DisplayTypeGateway.search(argumentCollection=arguments) />
+
+		<cfset sReturn.start		= arguments.start>
+		<cfset sReturn.size			= arguments.size>
+		<cfset sReturn.itemarray	= aDisplayType>
+
+		<cfreturn sReturn />
+	</cffunction>
+
+	<cffunction name="saveDisplaytype" access="public" output="false" returntype="boolean">
+		<cfargument name="DisplaytypeBean" type="any" required="true" />
+
+		<cfreturn variables.DisplaytypeDAO.save(DisplaytypeBean) />
+	</cffunction>
+	
+	<cffunction name="updateDisplaytype" access="public" output="false" returntype="boolean">
+		<cfargument name="DisplaytypeBean" type="any" required="true" />
+
+		<cfset var success			= variables.DisplaytypeDAO.update(DisplaytypeBean) />
+		<cfset var aSettings		= getSettingService().getSettings() /> 
+		<cfset var settingBean		= "" /> 
+		<cfset var iiX				= "" /> 
+		
+		<cfloop from="1" to="#arrayLen(aSettings)#" index="iiX">
+			<cfset settingBean = aSettings[iiX] />
+			
+			<cfif settingBean.getDefaultDisplayTypeID() eq DisplaytypeBean.getDisplayTypeID()>
+				<cfset getDisplayImageService().invalidateMuraGalleryImages( settingBean.getSiteID() ) />
+			</cfif>
+		</cfloop>
+		
+		<cfreturn success />	
+	</cffunction>
+
+	<cffunction name="deleteDisplaytype" access="public" output="false" returntype="boolean">
+		<!---^^PRIMARY-START^^--->
+		<cfargument name="Displaytypeid" type="uuid" required="true" />
+		<!---^^PRIMARY-END^^--->
+		
+		<cfset var DisplaytypeBean = createDisplaytype(argumentCollection=arguments) />
+		<cfreturn variables.DisplaytypeDAO.delete(DisplaytypeBean) />
+	</cffunction>
+<!---^^GENERATEDEND^^--->
+<!---^^CUSTOMSTART^^--->
+
+	<cffunction name="setSettingService" access="public" returntype="void" output="false">
+		<cfargument name="SettingService" type="any" required="true" />
+		<cfset variables.instance.SettingService = arguments.SettingService />
+	</cffunction>
+	<cffunction name="getSettingService" access="public" returntype="any" output="false">
+		<cfreturn variables.instance.SettingService />
+	</cffunction>
+
+	<cffunction name="setDisplayImageService" access="public" returntype="void" output="false">
+		<cfargument name="DisplayImageService" type="any" required="true" />
+		<cfset variables.instance.DisplayImageService = arguments.DisplayImageService />
+	</cffunction>
+	<cffunction name="getDisplayImageService" access="public" returntype="any" output="false">
+		<cfreturn variables.instance.DisplayImageService />
+	</cffunction>
+
+<!---^^CUSTOMEND^^--->
+</cfcomponent>
+
+
+
+
+
+
+
+
+
+

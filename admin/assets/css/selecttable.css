@@ -1,0 +1,103 @@
+.ui-selecttable {
+	margin: 0 0 5px 0;
+	position: relative;
+}
+.ui-total {
+	padding: 2px 0 0 120px;
+	
+}
+.ui-selecttable .table-buttons li {
+	margin: 1px 3px 0 0 !important;
+	padding: 0 !important;
+}
+.ui-selecttable div {
+}
+.ui-selecttable ul {
+	margin: 0;
+	padding: 0;
+	width: auto;
+}
+.ui-selecttable .left {
+	float: left;
+}
+.ui-selecttable .right {
+	font-size: 110%;
+	float: right;
+}
+.ui-selecttable .table-buttons li {
+	border: 0 !important;
+	color: #333;
+	cursor: default;
+	margin: 1px 0px 0 0 !important;
+}
+.ui-selecttable .table-buttons li.ui-en {
+	cursor: pointer;
+	color: #fff;
+}
+.ui-selecttable .table-buttons li.current {
+	color: #FF3A00;
+}
+.ui-selecttable .table-buttons li.ui-nv {
+	line-height: 1;
+}
+.ui-selecttable .table-buttons {
+	margin: 0 !important;
+	padding: 0 !important;
+}
+.ui-selecttable .table-buttons li a {
+	color: #fff;
+}
+.ui-selecttable li {
+	clear: none !important;	
+	margin: 0 !important;
+	padding: 0 !important;
+	overflow: hidden !important;
+	list-style: none !important;
+}
+.ui-selecttable .ui-selecttable-buttonbar {
+	padding: 3px 2px 3px 1px !important;
+	border: 0;
+	height: 20px;
+}
+.ui-selecttable .ui-selecttable-buttonbar div {
+	float: left;
+}
+.ui-selecttable .ui-selecttable-modal {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	background: url('images/modal.png');
+	z-index: 100;
+}
+.ui-selecttable .ui-selecttable-spinner {
+	height: 100%;
+	width: 100%;
+	background: url('images/spinner.gif') center center no-repeat; 
+}
+.ui-selecttable .ui-selecttable-header {
+	border: 0;
+	padding: 3px;
+	height: 20px;
+}
+.ui-selecttable .ui-selecttable-header span {
+	display: block;
+	padding: 2px 0 0 4px;
+}
+.ui-selecttable .ui-selecttable-header div {
+	float: left;
+	margin: 0 2px 0 0;
+}
+.ui-selecttable-select-list img {
+	padding: 1px;
+	border: 2px solid #fafafa;	
+}
+.ui-selecttable-table td {
+	padding: 2px;
+	text-align: left;
+	background-color: #fff;
+}
+.ui-selecttable-table td img {
+	padding: 0 2px;
+}

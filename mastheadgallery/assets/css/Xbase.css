@@ -1,0 +1,83 @@
+.meld-gallery .svwp { width: 50px; height: 20px; background: #fff; } /*preloader stuff. do not modify!*/ 
+.meld-gallery .svwp ul{ position: relative; left: -999em; }/*preloader stuff. do not modify!*/ 
+.meld-gallery .meld-gallery .slideViewer { /*this is the gallery container*/ 
+position: relative; 
+overflow: hidden;  
+margin: 0; 
+padding: 0; 
+background: #fff; 
+} 
+.meld-gallery .slideViewer ul {  /*this is your list of images*/ 
+position: relative; 
+left: 0; 
+top: 0; 
+width: 1%; 
+list-style-type: none; 
+margin: 0;  
+padding: 0; 
+} 
+.meld-gallery .slideViewer ul li { /*each LI item is floated; the whole list is now displayed as if its in one row*/ 
+float:left; 
+} 
+ 
+/*typographic info*/ 
+.meld-gallery .slideViewer span.typo{  
+padding: 6px; /* do not modify padding (yet)*/ 
+background: #fff; 
+color: #000; 
+font: normal 10px Verdana; 
+} 
+ 
+.meld-gallery .thumbSlider { /*the thumbnails slider contanier*/ 
+overflow: hidden; 
+width: 1%; 
+background: #fff; 
+} 
+.meld-gallery .thumbSlider ul { /*the thumbnails list of images*/ 
+list-style-type: none; 
+margin: 0;  
+padding: 0; 
+} 
+.meld-gallery .thumbSlider ul li{  
+float:left; 
+margin: 0; 
+} 
+.meld-gallery .thumbSlider a{ /*the link wrapped around each thumbnail. dynamically.*/ 
+color: #fff; 
+text-decoration: none; 
+} 
+.meld-gallery .thumbSlider a img{ 
+border: 0; 
+display: block; 
+padding: 0; 
+} 
+.meld-gallery .thumbSlider p.tmbrdr { /* the border above -not around- each thumb */ 
+/* width, height and top values are dynamically added by the script. Do not modify. */ 
+position:relative;  
+left: 0; 
+font-size: 0.01em; 
+left: 0; 
+margin: 0; 
+padding: 0; 
+} 
+ 
+.meld-gallery a.left,.meld-gallery  a.right { /*the left and right buttons (links)*/ 
+background: transparent; /* could be any color  */ 
+color: #ff0000; 
+font: bold 16px Arial; 
+overflow: hidden; 
+} 
+.meld-gallery a.left span,.meld-gallery  a.right span{ 
+ 
+} 
+.meld-gallery a.left img,.meld-gallery  a.right img{ 
+border: 0; 
+} 
+.meld-gallery a.l_dis,.meld-gallery  a.r_dis { 
+background: transparent; /* ALWAYS leave transparent. this is the 'disabled' state of the link !  */ 
+cursor: default; 
+} 
+.meld-gallery a.l_dis span,.meld-gallery  a.r_dis span { 
+display: none; 
+} 
+.meld-gallery a:focus {outline:none;} 
