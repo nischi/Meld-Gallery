@@ -2,6 +2,7 @@
 <name>Meld Gallery</name>
 <package>MeldGallery</package>
 <version>1.0.0.1</version>
+<directoryFormat>packageOnly</directoryFormat>
 <provider>Meld Solutions Inc.</provider>
 <providerURL>http://www.meldsolutions.com</providerURL>
 <category>Application</category>
