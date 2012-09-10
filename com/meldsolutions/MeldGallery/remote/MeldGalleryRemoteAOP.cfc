@@ -138,18 +138,8 @@
 		
 	</cffunction>
 			
-	<cffunction name="saveImageGroup" access="remote" returntype="any" output="false" > 
-<cfset var rtn = callMethod('saveImageGroup', arguments) />
-<cfif isDefined('rtn')><cfreturn rtn /></cfif>
-</cffunction>
-
-<cffunction name="getSelectTable" access="remote" returntype="any" output="false" > 
-<cfset var rtn = callMethod('getSelectTable', arguments) />
-<cfif isDefined('rtn')><cfreturn rtn /></cfif>
-</cffunction>
-
-<cffunction name="getImageList" access="remote" returntype="any" output="false" > 
-<cfset var rtn = callMethod('getImageList', arguments) />
+	<cffunction name="getFeedList" access="remote" returntype="any" output="false" > 
+<cfset var rtn = callMethod('getFeedList', arguments) />
 <cfif isDefined('rtn')><cfreturn rtn /></cfif>
 </cffunction>
 
@@ -168,13 +158,23 @@
 <cfif isDefined('rtn')><cfreturn rtn /></cfif>
 </cffunction>
 
-<cffunction name="getFeedList" access="remote" returntype="any" output="false" > 
-<cfset var rtn = callMethod('getFeedList', arguments) />
+<cffunction name="getSelectTable" access="remote" returntype="any" output="false" > 
+<cfset var rtn = callMethod('getSelectTable', arguments) />
 <cfif isDefined('rtn')><cfreturn rtn /></cfif>
 </cffunction>
 
 <cffunction name="getImageGrid" access="remote" returntype="any" output="false" > 
 <cfset var rtn = callMethod('getImageGrid', arguments) />
+<cfif isDefined('rtn')><cfreturn rtn /></cfif>
+</cffunction>
+
+<cffunction name="saveImageGroup" access="remote" returntype="any" output="false" > 
+<cfset var rtn = callMethod('saveImageGroup', arguments) />
+<cfif isDefined('rtn')><cfreturn rtn /></cfif>
+</cffunction>
+
+<cffunction name="getImageList" access="remote" returntype="any" output="false" > 
+<cfset var rtn = callMethod('getImageList', arguments) />
 <cfif isDefined('rtn')><cfreturn rtn /></cfif>
 </cffunction>
 

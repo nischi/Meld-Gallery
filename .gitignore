@@ -1,0 +1,37 @@
+# Folders and Files to ignore
+/WEB-INF
+/config/settings.ini.cfm
+/config/version.cfm
+/config/mappings.cfm
+/config/cfapplication.cfm
+/plugins
+/robots.txt
+/default/assets
+/default/cache
+/dev
+/web.config
+/.htaccess
+/CFIDE
+/bluedragon
+/unitTests
+/www
+/settings.xml
+/logs
+/crossdomain.xml
+compiled/
+*.less.css
+
+# OS or Editor folders
+*~
+.DS_Store
+._*
+Thumbs.db
+.cache
+.project
+.rdsTempFiles
+.settings
+.tmproj
+*.esproj
+*.sublime-project
+*.sublime-workspace
+*_notes/
