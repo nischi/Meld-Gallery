@@ -20,19 +20,31 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 --->
 <cfcomponent extends="mura.plugin.pluginGenericEventHandler">
-	<cfset variables.framework=getFrameworkVariables()>
+
+	<cffunction name="init" returntype="any" access="public" output="false" hint="Constructor">
+		<cfargument name="pluginConfig"	type="any"	required="true" />
+		<cfargument name="configBean"		type="any"	required="true" />
+
+		<cfset variables.preserveKeyList	= 'context,base,cfcbase,subsystem,subsystembase,section,item,services,action,controllerExecutionStarted,view,layout' />
+		<cfset variables.framework				= getFrameworkVariables()>
+
+		<cfreturn super.init(argumentCollection=arguments) />
+	</cffunction>
+
 
 	<cffunction name="onApplicationLoad">
 		<cfargument name="$">
 
 		<cfset var appreloadKey = $.GlobalConfig().getValue('appreloadKey') />
 
-		<cfif len( appreloadKey ) and structKeyExists(url,appreloadKey)> 
+		<cfif len( appreloadKey ) and structKeyExists(url,appreloadKey)>
 			<cfset url[variables.framework.reload] = true />
 		</cfif>
 
 		<!--- invoke onApplicationStart in the application.cfc so the framework can do its thing --->
+		<cfset local.state = preserveInternalState(request) />
 		<cfinvoke component="#pluginConfig.getPackage()#.Application" method="onApplicationStart" />
+		<cfset restoreInternalState(request,state)>
 
 		<cfset variables.pluginConfig.addEventHandler(this)>
 	</cffunction>
@@ -48,9 +60,19 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 		</cfif>
 	</cffunction>
 
+
+	<cffunction name="onGlobalSessionStart" returntype="any" access="public" output="false">
+		<cfargument name="$" type="any" required="true" hint="muraScope" />
+
+		<cfset local.state = preserveInternalState(request) />
+		<cfinvoke component="#variables.pluginConfig.getPackage()#.Application" method="onSessionStart" />
+		<cfset restoreInternalState(request,state)>
+	</cffunction>
+
+
 	<cffunction name="onGalleryMeldBodyRender">
 		<cfargument name="$">
-		
+
 		<cfset var beanfactory			= pluginConfig.getApplication().getValue( 'beanFactory' ) />
 		<cfset var meldGalleryManager	= beanfactory.getBean("meldGalleryManager") />
 		<cfset var settingsBean			= meldGalleryManager.getSiteSettings( $.event().getValue('siteID') ) />
@@ -61,10 +83,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 		<cfset var pluginManager		= $.getBean('pluginManager') />
 
 		<cfset var pluginEvent	 		= createObject("component","mura.MuraScope") />
-		
+
 		<cfset var params				= "" />
 		<cfset var strOut				= "" />
-				
+
 		<cfif not displayTypeBean.getIsActive()>
 			<cfreturn />
 		</cfif>
@@ -73,10 +95,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 		<cfset params.displayID			= "00000000-0000-F000-0000000000000500" />
 		<cfset params.displayTypeID		= settingsBean.getDefaultDisplayTypeID() />
 		<cfset params.contentID			= $.content().getContentID() />
-		
+
 		<cfset pluginEvent=pluginEvent.init( StructNew() ).getEvent()>
 		<cfset pluginEvent.setValue( 'siteID', $.event().getValue('siteID') )>
-				
+
 		<cfset sArgs.event				= pluginEvent />
 		<cfset sArgs.params				= serializeJSON( params ) />
 		<cfset sArgs.moduleID			= pluginConfig.getModuleID() />
@@ -86,14 +108,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 		<cfreturn strOut />
 	</cffunction>
-	
+
 	<cffunction name="onFileCache">
 		<cfargument name="$">
-		
-		<cfset var sArgs = StructNew () /> 
+
+		<cfset var sArgs = StructNew () />
 
 		<cfif not StructKeyExists(form,"newFile") or not len( form.newFile )>
-			<cfreturn />		
+			<cfreturn />
 		<cfelseif not listFindNoCase( "jpg,gif,png,jpeg",$.event().getValue('fileExt') )>
 			<cfreturn />
 		</cfif>
@@ -102,18 +124,18 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 		<cfset sArgs.contentID = $.event().getValue('contentID') />
 		<cfset sArgs.fileExt = $.event().getValue('fileExt') />
 
-		<cfset request.MeldGalleryImageFile = sArgs /> 
+		<cfset request.MeldGalleryImageFile = sArgs />
 	</cffunction>
-	
+
 	<cffunction name="onFileCacheDelete">
 		<cfargument name="$">
-		
+
 		<cfset var beanfactory		= pluginConfig.getApplication().getValue( 'beanFactory' ) />
 		<cfset var ImageService		= beanfactory.getBean("ImageService") />
-		
+
 		<!---
 			Won't work if datasource is external to Mura's because event is inside a transaction
-		 --->	
+		 --->
 		<cftry>
 			<cfset ImageService.cleanImages( $.event().getValue('fileID'),$.event().getValue('siteID') ) />
 		<cfcatch></cfcatch>
@@ -122,7 +144,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 	<cffunction name="onAfterContentSave">
 		<cfargument name="$">
-		
+
 		<cfset var beanfactory	= pluginConfig.getApplication().getValue( 'beanFactory' ) />
 
 		<cfset var ImageService			= beanfactory.getBean("ImageService") />
@@ -131,7 +153,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 		<cfset var imageBean			= "" />
 		<cfset var formData				= StructNew() />
 
-		<cfset var sArgs				= StructNew() /> 
+		<cfset var sArgs				= StructNew() />
 		<cfset var fileID				= "" />
 		<cfset var linkURL				= "" />
 		<cfset var contentBean			= $.event().getValue("contentBean") />
@@ -139,7 +161,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 		<!--- create an image from Mura Content --->
 		<cfif StructKeyExists(request,"MeldGalleryImageFile")>
-			<cfset sArgs					= StructNew() /> 
+			<cfset sArgs					= StructNew() />
 			<cfset sArgs.siteID				= $.event().getValue('siteID') />
 			<cfset sArgs.adminID			= $.currentUser().getValue('userID') />
 			<cfset sArgs.remoteID			= request.MeldGalleryImageFile.fileID />
@@ -153,12 +175,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 			<cfset sArgs.name				= contentBean.getTitle() />
 			<cfset sArgs.caption			= contentBean.getTitle() />
 			<cfset sArgs.summary			= contentBean.getSummary() />
-	
+
 			<cfset imageBean = ImageService.createImage( argumentCollection=sArgs ) />
-	
+
 			<cfset sArgs.imageBean			= imageBean />
 			<cfset sArgs.imageID			= imageBean.getImageID() />
-	
+
 			<cfset fileID = doUploadImage( $,sArgs ) />
 			<cfset imageBean.setFileID( fileID ) />
 
@@ -169,11 +191,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  		<cfif not settingsBean.getSyncInfo() or not len( contentBean.getFileID() )>
 			<cfreturn />
 		</cfif>
-		
+
 		<!--- update file title/summary --->
 		<cfset sArgs.remoteID = contentBean.getFileID() />
 		<cfset imageBean = ImageService.getBeanByAttributes( argumentCollection=sArgs ) />
-	
+
 		<cfif not imageBean.beanExists()>
 			<cfreturn />
 		</cfif>
@@ -186,17 +208,17 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 			<cfset linkURL = $.getContentRenderer().getURLStem( contentBean.getSiteID(),contentBean.getfileName() ) />
 			<cfset imageBean.setLinkURL( linkURL ) />
 		</cfif>
-		
+
 		<cfset ImageService.updateImage( imageBean ) />
 	</cffunction>
-	
+
 	<cffunction name="onSiteRequestStart">
 		<cfargument name="$">
 	</cffunction>
 
 	<cffunction name="onSiteRequestInit" output="false" returntype="void">
 		<cfargument name="$">
-		
+
 	</cffunction>
 
 	<cffunction name="getFrameworkVariables" output="false" access="private">
@@ -204,7 +226,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 		<cfinclude template="../frameworkConfig.cfm" />
 
-		<cfreturn framework />		
+		<cfreturn framework />
 	</cffunction>
 
 	<cffunction name="doUploadImage" access="private" returntype="string" output="false">
@@ -219,7 +241,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 		<cfset var ImageService			= beanfactory.getBean("ImageService") />
 		<cfset var imageBean			= rc.imageBean />
 
-		<cfset var sArgs				= StructNew() /> 
+		<cfset var sArgs				= StructNew() />
 		<cfset var fileID				= "" />
 		<cfset var siteID				= $.event().getValue('siteID') />
 
@@ -229,11 +251,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 		<cfset settingsBean				= meldGalleryManager.getSiteSettings( siteID ) />
 
-		<cfset sArgs					= StructNew() /> 
+		<cfset sArgs					= StructNew() />
 		<cfset sArgs.imageID			= rc.imageID />
 
 		<!--- FILE --->
-		<cfset sArgs					= StructNew() /> 
+		<cfset sArgs					= StructNew() />
 		<cfset sArgs.contentID			= imageBean.getImageID() />
 		<cfset sArgs.siteID				= $.event().getValue('siteID') />
 		<cfset sArgs.moduleID			= pluginConfig.getModuleID() />
@@ -243,7 +265,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 		<cfset fileUploadBean			= mmFileUpload.createFileUploadBean( argumentCollection=sArgs ) />
 
 		<!--- IMAGES --->
-		<cfset sArgs					= StructNew() /> 
+		<cfset sArgs					= StructNew() />
 		<cfset sArgs.width				= settingsBean.getImageWidth() />
 		<cfset sArgs.height				= settingsBean.getImageHeight() />
 		<cfset sArgs.resizeType			= settingsBean.getImageResizeType() />
@@ -251,7 +273,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 		<cfset sArgs.cropType			= settingsBean.getImageCropType() />
 		<cfset sArgs.qualityType		= settingsBean.getImageQualityType() />
 		<cfset largeImageRenderBean		= mmImageRenderer.createImageRenderBean( argumentCollection=sArgs ) />
-		<cfset sArgs					= StructNew() /> 
+		<cfset sArgs					= StructNew() />
 		<cfset sArgs.width				= settingsBean.getImageWidthMedium() />
 		<cfset sArgs.height				= settingsBean.getImageHeightMedium() />
 		<cfset sArgs.resizeType			= settingsBean.getImageResizeTypeMedium() />
@@ -259,7 +281,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 		<cfset sArgs.cropType			= settingsBean.getImageCropTypeMedium() />
 		<cfset sArgs.qualityType		= settingsBean.getImageQualityTypeMedium() />
 		<cfset mediumImageRenderBean	= mmImageRenderer.createImageRenderBean( argumentCollection=sArgs ) />
-		<cfset sArgs					= StructNew() /> 
+		<cfset sArgs					= StructNew() />
 		<cfset sArgs.width				= settingsBean.getImageWidthSmall() />
 		<cfset sArgs.height				= settingsBean.getImageHeightSmall() />
 		<cfset sArgs.resizeType			= settingsBean.getImageResizeTypeSmall() />
@@ -280,8 +302,39 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 			<cfset fileID = mmFileUpload.uploadImage( argumentCollection=sArgs ) />
 			<cfcatch></cfcatch>
 		</cftry>
-		
-		<cfreturn fileID />	
+
+		<cfreturn fileID />
+	</cffunction>
+
+
+	<cffunction name="preserveInternalState" returntype="struct" access="public" output="false">
+		<cfargument name="state" type="struct" required="true" />
+
+		<cfset local.preservedKeys = structNew() />
+
+		<cfloop list="#variables.preserveKeyList#" index="local.key">
+			<cfif isDefined('arguments.state.#local.key#')>
+				<cfset local.preservedKeys[local.key] = arguments.state[local.key] />
+				<cfset structDelete(arguments.state,local.key) />
+			</cfif>
+		</cfloop>
+		<cfset structDelete(arguments.state,'controllers') />
+		<cfset structDelete(arguments.state,'serviceExecutionComplete') />
+
+		<cfreturn local.preservedKeys />
+	</cffunction>
+
+
+	<cffunction name="restoreInternalState" returntype="void" access="public" output="false">
+		<cfargument name="state"		type="struct"	required="true" />
+		<cfargument name="restore"	type="struct"	required="true" />
+
+		<cfloop list="#variables.preserveKeyList#" index="local.key">
+			<cfset structDelete(arguments.state,local.key) />
+		</cfloop>
+		<cfset structAppend(arguments.state,arguments.restore,true) />
+		<cfset structDelete(arguments.state,'controllers') />
+		<cfset structDelete(arguments.state,'serviceExecutionComplete') />
 	</cffunction>
 
 </cfcomponent>
