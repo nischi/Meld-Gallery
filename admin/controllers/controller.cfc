@@ -26,7 +26,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 	<cffunction name="init" access="public" returntype="any" output="false">
 		<cfargument name="fw" type="struct" required="false" default="#StructNew()#">
 		<cfset variables.fw = fw />
-		
+
 		<cfreturn this />
 	</cffunction>
 
@@ -53,8 +53,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 		<cfelse>
 			<cfset rc.siteID = session.siteid />
 		</cfif>
-		
-		<cfif isUserInRole("s2") or isUserInRole("Admin;#application.settingsManager.getSite(rc.getValue('siteID')).getPublicUserPoolID()#;0")>
+
+		<cfif isUserInRole("s2") or isUserInRole("Admin;#application.settingsManager.getSite(rc.siteID).getPublicUserPoolID()#;0")>
 			<cfset rc.isAdmin = true>
 		<cfelse>
 			<cfset rc.isAdmin = false>
@@ -65,7 +65,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 		<cfset rc.isAdmin		= rc.$.currentUser().isInGroup('admin') or rc.$.currentUser().isSuperUser()>
 		<cfset rc.rbFactory		= rc.pluginConfig.getApplication().getValue( "rbFactory")>
 		<cfset rc.directory		= rc.pluginConfig.getDirectory()>
-		
+
 		<cfset rc.mmBC.addCrumb( arguments.rc,"Dashboard","?" )>
 	</cffunction>
 
@@ -80,7 +80,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 	<cffunction name="getErrorManager" access="public" returntype="any" output="false">
 		<cfreturn getBeanFactory().getBean("mmErrorManager")>
 	</cffunction>
-	
+
 	<cffunction name="getBeanFactory" access="public" returntype="any" output="false">
 		<cfreturn variables.fw.getBeanFactory()>
 	</cffunction>
